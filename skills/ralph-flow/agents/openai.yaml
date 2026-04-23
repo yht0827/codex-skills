@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ralph Flow"
+  short_description: "PRD 기반 장기 작업의 반복 실행 흐름 안내"
+  default_prompt: "Use $ralph-flow to plan a PRD-based long-running implementation loop."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD"
+  short_description: "요구사항을 구현 가능한 PRD로 정리"
+  default_prompt: "Use $prd to turn this feature idea into a clear PRD."

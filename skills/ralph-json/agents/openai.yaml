@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ralph JSON"
+  short_description: "Ralph 실행용 prd.json 생성과 검증"
+  default_prompt: "Use $ralph-json to convert this PRD into a Ralph prd.json file."

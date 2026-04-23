@@ -1,0 +1,4 @@
+interface:
+  display_name: "Catchup"
+  short_description: "handoff를 검증하고 이어갈 상태 확인"
+  default_prompt: "Use $catchup to verify the latest handoff before continuing."

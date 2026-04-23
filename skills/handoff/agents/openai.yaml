@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handoff"
+  short_description: "다음 세션용 인계 문서를 작성"
+  default_prompt: "Use $handoff to write a concise handoff for the next session."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD Team"
+  short_description: "Team Lead Red Green Refactor TDD 팀"
+  default_prompt: "TDD Team Lead가 요구사항을 task로 나누고 Red, Green, Refactor agent를 순차 진행하는 tmux 4분할 팀을 구성해 주세요."

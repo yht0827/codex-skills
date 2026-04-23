@@ -1,0 +1,161 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+script_dir="${0:A:h}"
+subject="$script_dir/open-tdd-team"
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+fake_bin="$tmpdir/bin"
+workdir="$tmpdir/work"
+mkdir -p "$fake_bin" "$workdir"
+mkdir -p "$workdir/src/main/java" "$workdir/src/test/java"
+touch "$workdir/build.gradle.kts" "$workdir/gradlew"
+chmod +x "$workdir/gradlew"
+cat > "$workdir/prd.json" <<'JSON'
+{
+  "project": "Sample",
+  "branchName": "ralph/sample",
+  "description": "Sample feature",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Sample story",
+      "description": "As a user, I want a small behavior.",
+      "acceptanceCriteria": ["Behavior is verified", "Typecheck passes", "Tests pass"],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
+JSON
+
+cat > "$fake_bin/tmux" <<'TMUX'
+#!/usr/bin/env zsh
+set -euo pipefail
+
+log="${TDD_TEAM_TEST_LOG:?}"
+counter="${TDD_TEAM_TEST_COUNTER:?}"
+print -r -- "$*" >> "$log"
+
+next_pane() {
+  local n
+  n="$(cat "$counter")"
+  case "$n" in
+    0) print -r -- "%red" ;;
+    1) print -r -- "%green" ;;
+    2) print -r -- "%refactor" ;;
+    *) print -r -- "%extra" ;;
+  esac
+  print -r -- "$((n + 1))" > "$counter"
+}
+
+case "$1" in
+  display-message)
+    if [[ "$*" == *"#S:#I"* ]]; then
+      print -r -- "cdx-ht:1"
+    elif [[ "$*" == *"#{pane_id}"* ]]; then
+      print -r -- "%lead"
+    elif [[ "$*" == *"#{pane_current_command}"* ]]; then
+      case "$*" in
+        *"%lead"*) print -r -- "codex-aarch64-a" ;;
+        *) print -r -- "zsh" ;;
+      esac
+    fi
+    ;;
+  list-panes)
+    print -r -- "0: %lead"
+    ;;
+  split-window)
+    next_pane
+    ;;
+  has-session)
+    exit 1
+    ;;
+esac
+TMUX
+chmod +x "$fake_bin/tmux"
+
+export PATH="$fake_bin:$PATH"
+export TMUX="$tmpdir/tmux-socket,1,0"
+export TDD_TEAM_TEST_LOG="$tmpdir/tmux.log"
+export TDD_TEAM_TEST_COUNTER="$tmpdir/counter"
+print -r -- 0 > "$TDD_TEAM_TEST_COUNTER"
+
+"$subject" "$workdir" "현재 window에서 TDD 팀 구성" >/dev/null
+
+if grep -q 'new-session\\|new-window\\|attach' "$TDD_TEAM_TEST_LOG"; then
+  echo "expected in-tmux mode to reuse the current window" >&2
+  exit 1
+fi
+
+for pane in '%red' '%green' '%refactor'; do
+  if grep -q -- "send-keys .* -t $pane " "$TDD_TEAM_TEST_LOG"; then
+    echo "expected newly split $pane agent to start without send-keys" >&2
+    exit 1
+  fi
+done
+
+for prompt in red green refactor; do
+  if ! grep -q -- "split-window .*codex .*${prompt}\\.txt" "$TDD_TEAM_TEST_LOG"; then
+    echo "expected $prompt agent to be started by split-window command" >&2
+    exit 1
+  fi
+done
+
+if grep -q -- 'send-keys .* -t %lead ' "$TDD_TEAM_TEST_LOG"; then
+  echo "expected existing lead codex pane to be left untouched" >&2
+  exit 1
+fi
+
+for title in team-lead red green refactor; do
+  if ! grep -q -- "-T .*${title}" "$TDD_TEAM_TEST_LOG"; then
+    echo "expected pane title for $title" >&2
+    exit 1
+  fi
+done
+
+if ! grep -q -- 'pane-border-status top' "$TDD_TEAM_TEST_LOG"; then
+  echo "expected top pane titles to be enabled" >&2
+  exit 1
+fi
+
+if ! grep -q -- 'pane-border-format  #{pane_title} ' "$TDD_TEAM_TEST_LOG"; then
+  echo "expected simple pane title format" >&2
+  exit 1
+fi
+
+prompt_dir="$workdir/.tdd-team/prompts"
+
+if ! grep -q -- 'TEST_CMD: ./gradlew test' "$prompt_dir/team-lead.txt"; then
+  echo "expected detected Gradle wrapper test command in team lead prompt" >&2
+  exit 1
+fi
+
+if ! grep -q -- 'task 진행 상태를 \[x\]/\[>\]/\[ \]로 표시' "$prompt_dir/team-lead.txt"; then
+  echo "expected progress marker rule in team lead prompt" >&2
+  exit 1
+fi
+
+if ! grep -q -- 'Ralph JSON: prd.json 감지됨' "$prompt_dir/team-lead.txt"; then
+  echo "expected Ralph JSON guidance in team lead prompt" >&2
+  exit 1
+fi
+
+if ! grep -q -- '컴파일은 되어야 하지만 의도한 이유로 실패' "$prompt_dir/red.txt"; then
+  echo "expected strict failing-test rule in red prompt" >&2
+  exit 1
+fi
+
+if ! grep -q -- '테스트 파일을 수정하지 않는다' "$prompt_dir/green.txt"; then
+  echo "expected no-test-edit rule in green prompt" >&2
+  exit 1
+fi
+
+if ! grep -q -- '새 기능이나 새 테스트를 추가하지 않는다' "$prompt_dir/refactor.txt"; then
+  echo "expected no-new-behavior rule in refactor prompt" >&2
+  exit 1
+fi
+
+echo "ok"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Explore"
+  short_description: "코드베이스 구조를 깊게 분석"
+  default_prompt: "Use $code-explore to map this codebase before implementation."

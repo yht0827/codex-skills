@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Quality"
+  short_description: "코드 품질과 개선 우선순위 평가"
+  default_prompt: "Use $code-quality to review this module's quality risks."

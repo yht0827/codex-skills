@@ -1,0 +1,4 @@
+interface:
+  display_name: "Superpowers 흐름"
+  short_description: "Superpowers 개발 흐름과 Compound 기록 단계 안내"
+  default_prompt: "Superpowers 전체 개발 흐름과 각 단계에서 쓰는 스킬, 마지막 Compound 기록 단계를 짧고 깔끔한 Markdown 표로 안내해 주세요."

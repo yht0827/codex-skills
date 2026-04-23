@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+.codex/
+.claude/
+.tdd-team/
+.ralph/
+prd.json
+progress.txt
+tasks/
+code-*.md
+quality-*.md
+handoff-*.md

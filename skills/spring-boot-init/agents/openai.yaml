@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring Boot Init"
+  short_description: "Spring Boot 프로젝트를 생성"
+  default_prompt: "Use $spring-boot-init to create a small Spring Boot project."
