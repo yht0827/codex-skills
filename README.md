@@ -70,6 +70,39 @@ $catchup        -> verify handoff in the next session
 
 See [docs/workflow.md](docs/workflow.md) for the longer flow.
 
+## Quick Examples
+
+Small feature:
+
+```text
+Use Superpowers for brainstorming/planning
+-> implement with TDD
+-> verify before completion
+```
+
+Large feature:
+
+```text
+$prd "알림 기능 PRD 작성"
+-> $ralph-json "tasks/prd-notifications.md를 prd.json으로 변환"
+-> $tdd-team "prd.json의 다음 story를 TDD로 진행"
+```
+
+Growing commerce project:
+
+```text
+tasks/prd-commerce-mvp.md
+tasks/prd-coupon.md
+tasks/prd-product-review.md
+tasks/prd-payment-webhook.md
+
+$prd            -> write one PRD per feature
+$ralph-json     -> turn the current PRD into story backlog
+$tdd-team       -> implement one story with visible Red/Green/Refactor panes
+$handoff        -> write session handoff before stopping
+$catchup        -> verify handoff before continuing
+```
+
 ## Public Repo Safety
 
 This repo intentionally does not include:
