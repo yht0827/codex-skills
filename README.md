@@ -16,11 +16,11 @@ Personal Codex skill toolkit for PRD writing, Ralph-style story tracking, TDD te
 | `$catchup` | handoff를 실제 파일과 git 상태로 검증 |
 | `$code-explore` | 새 코드베이스의 구조, entrypoint, 의존성, 테스트 흐름 분석 |
 | `$code-quality` | 코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험 평가 |
+| `$diagnose` | 버그, 실패 테스트, flaky 현상, 성능 회귀의 원인 추적 |
 | `$spring-boot-init` | Spring Initializr 기반 Spring Boot 프로젝트 생성 |
 | `$superpowers-flow` | Superpowers 중심 개발 흐름과 Compound 기록 단계 안내 |
 | `$quick-help` | 자주 쓰는 스킬만 짧게 확인 |
 | `$guide` | 설치된 스킬과 프롬프트 전체 목록 안내 |
-| `$mario` | 질문형 코칭으로 코딩테스트/디버깅 사고 정리 |
 
 ## Install
 
@@ -56,12 +56,14 @@ git pull --ff-only
 ```
 
 The validator checks that every skill has `SKILL.md`, valid frontmatter basics, and matching `name`.
+`$ralph-json` also includes a stricter validator for `prd.json` story shape.
 
 ## Typical Workflow
 
 ```text
 $prd            -> write a clear feature PRD
 $ralph-json     -> convert PRD to prd.json
+$diagnose       -> build a repro loop before fixing unclear bugs
 $tdd-team       -> implement one story through Red / Green / Refactor panes
 $ralph-flow     -> optionally run multiple stories through an automated loop
 $handoff        -> write session handoff before stopping
@@ -87,6 +89,17 @@ $prd "알림 기능 PRD 작성"
 -> $ralph-json "tasks/prd-notifications.md를 prd.json으로 변환"
 -> $tdd-team "prd.json의 다음 story를 TDD로 진행"
 ```
+
+Ralph story metadata:
+
+```json
+{
+  "type": "AFK",
+  "blockedBy": ["US-001"]
+}
+```
+
+Use `AFK` for story slices Codex can run alone, `HITL` for slices that need human judgment. `blockedBy` keeps `$ralph-flow` from starting a story before its dependencies pass. See [examples/ralph-prd.json](examples/ralph-prd.json).
 
 Growing commerce project:
 

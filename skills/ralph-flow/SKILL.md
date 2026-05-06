@@ -87,6 +87,8 @@ Compound = 완료 후 지식 기록
         "Typecheck passes"
       ],
       "priority": 1,
+      "type": "AFK",
+      "blockedBy": [],
       "passes": false,
       "notes": ""
     }
@@ -98,10 +100,13 @@ Compound = 완료 후 지식 기록
 
 - story 하나는 한 iteration 안에 끝낼 수 있어야 한다.
 - dependency 순서대로 priority를 준다.
+- 자동 실행 가능한 story는 `type:"AFK"`, 사람 판단이 필요한 story는 `type:"HITL"`로 표시한다.
+- 선행 story가 있으면 `blockedBy`에 story ID를 넣는다.
 - schema, migration, backend, UI, aggregate view 순서가 기본이다.
 - 모든 story에는 검증 가능한 acceptance criteria를 둔다.
 - 모든 story에는 `Typecheck passes`를 넣는다.
 - UI story에는 브라우저 검증 기준을 넣는다.
+- 실행기는 `AFK`이면서 `blockedBy`가 모두 `passes:true`인 story만 고른다.
 
 ## progress.txt 규칙
 

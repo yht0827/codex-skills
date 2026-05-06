@@ -188,9 +188,25 @@ story_count() {
 
 next_story_json() {
   jq -c '
-    [.userStories[] | select(.passes != true)]
+    . as $root
+    | def passed($id): any($root.userStories[]; .id == $id and .passes == true);
+    [$root.userStories[]
+      | select(.passes != true)
+      | select((.type // "AFK") == "AFK")
+      | select(all((.blockedBy // [])[]; passed(.)))
+    ]
     | sort_by(.priority // 999999, .id // "")
     | first // empty
+  ' "$prd_file"
+}
+
+print_unrunnable_stories() {
+  jq -r '
+    . as $root
+    | def passed($id): any($root.userStories[]; .id == $id and .passes == true);
+    $root.userStories[]
+    | select(.passes != true)
+    | "- \(.id): type=\(.type // "AFK"), blockedBy=\((.blockedBy // []) | join(",")), runnable=\((((.type // "AFK") == "AFK") and all((.blockedBy // [])[]; passed(.))))"
   ' "$prd_file"
 }
 
@@ -252,7 +268,12 @@ for iteration in $(seq 1 "$max_iterations"); do
   fi
 
   story_json="$(next_story_json)"
-  [[ -n "$story_json" ]] || die "could not select next story"
+  if [[ -z "$story_json" ]]; then
+    print -ru2 -- "[ralph-codex] no runnable AFK story found"
+    print -ru2 -- "[ralph-codex] incomplete stories:"
+    print_unrunnable_stories >&2
+    exit 1
+  fi
   story_id="$(jq -r '.id // "UNKNOWN"' <<< "$story_json")"
   story_title="$(jq -r '.title // "(untitled)"' <<< "$story_json")"
   timestamp="$(date '+%Y%m%d-%H%M%S')"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose"
+  short_description: "버그 원인을 재현 loop로 좁히는 스킬"
+  default_prompt: "Use $diagnose to find the root cause before fixing this bug."

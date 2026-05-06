@@ -41,6 +41,8 @@ for i in $(seq 0 $((count - 1))); do
     and (.acceptanceCriteria | type == "array" and length > 0)
     and all(.acceptanceCriteria[]; type == "string" and length > 0)
     and (.priority | type == "number")
+    and ((.type == null) or (.type == "AFK" or .type == "HITL"))
+    and ((.blockedBy == null) or (.blockedBy | type == "array" and all(.[]; type == "string" and test("^US-[0-9]{3}$"))))
     and (.passes | type == "boolean")
     and (.notes | type == "string")
   ' "$file" >/dev/null || die "invalid story schema: $story_label"
@@ -58,6 +60,15 @@ done
 priority_count="$(jq '[.userStories[].priority] | length' "$file")"
 priority_unique_count="$(jq '[.userStories[].priority] | unique | length' "$file")"
 [[ "$priority_count" == "$priority_unique_count" ]] || die "story priorities must be unique"
+
+jq -e '
+  [.userStories[].id] as $ids
+  | all(.userStories[]; all((.blockedBy // [])[]; . as $dep | ($ids | index($dep)) != null))
+' "$file" >/dev/null || die "blockedBy references unknown story id"
+
+jq -e '
+  all(.userStories[]; .id as $id | all((.blockedBy // [])[]; . != $id))
+' "$file" >/dev/null || die "story cannot block itself"
 
 print -r -- "[ralph-json] valid: $file"
 print -r -- "[ralph-json] stories: $count"

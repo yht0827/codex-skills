@@ -15,6 +15,7 @@ idea
 
 Use `$tdd-team` when strict role separation and visible tmux panes matter.
 Use `$ralph-flow` when the work is long and can be repeated story by story.
+Use `$diagnose` before implementation when the bug cause is not yet proven.
 
 ## TDD Team
 
@@ -45,6 +46,26 @@ The generated prompts live under the project:
 ```
 
 Each story should be small enough for one focused iteration.
+Mark each story as `AFK` or `HITL`:
+
+- `AFK`: Codex can implement the story with the written acceptance criteria.
+- `HITL`: the story needs product, design, domain, access, or manual approval.
+
+Use `blockedBy` to list prerequisite story IDs. `$ralph-flow` selects only incomplete `AFK` stories whose blockers are already `passes:true`.
+
+See `examples/ralph-prd.json` for a small working shape.
+
+## Diagnose
+
+Use `$diagnose` for unclear bugs, flaky behavior, failing tests, and performance regressions.
+
+The expected shape is:
+
+```text
+repro loop -> reproduce symptom -> hypotheses -> instrument -> regression test -> fix -> cleanup
+```
+
+Do not start with a speculative fix if there is no runnable pass/fail signal.
 
 ## Session Handoff
 

@@ -21,12 +21,12 @@ Use this skill when the user asks for the full command list, all skills, all pro
 
 ### Skills
 
-Read skill frontmatter from both roots:
+Read skill frontmatter from these roots:
 
 - `~/.agents/skills/*/SKILL.md`
-- `~/.agents/skills/*/*/SKILL.md` for bundled skill sets such as Superpowers
 - `~/.codex/skills/*/SKILL.md`
 - `~/.codex/skills/.system/*/SKILL.md`
+- `~/.codex/plugins/cache/*/*/*/skills/*/SKILL.md` for installed plugin skill sets such as Superpowers
 
 Use the parent directory name as the skill name. Read `description:` from the YAML frontmatter. If the same skill appears in multiple roots, list it once.
 
@@ -48,7 +48,12 @@ from pathlib import Path
 import re
 home = Path.home()
 skills = {}
-for root in [home/'.agents/skills', home/'.codex/skills']:
+roots = [home/'.agents/skills', home/'.codex/skills']
+plugin_cache = home/'.codex/plugins/cache'
+if plugin_cache.exists():
+    roots.extend(p for p in plugin_cache.glob('*/*/*/skills') if p.is_dir())
+
+for root in roots:
     if not root.exists():
         continue
     files = list(root.glob('*/SKILL.md')) + list(root.glob('*/*/SKILL.md'))
@@ -99,13 +104,15 @@ Use these fixed Korean lines when the matching command exists:
 - `$catchup`: `handoff를 실제 파일과 git 상태로 검증하고 이어갈 상태를 확인하는 스킬`
 - `$code-explore`: `코드베이스 구조, entrypoint, 의존성, 테스트 흐름을 분석하는 스킬`
 - `$code-quality`: `코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험을 평가하는 스킬`
+- `$diagnose`: `버그, 실패 테스트, flaky 현상, 성능 회귀의 원인을 재현 loop로 좁히는 스킬`
 - `$spring-boot-init`: `Spring Initializr로 작은 Spring Boot 프로젝트를 생성하는 스킬`
+- `$job-apply-fit`: `채용공고 링크를 확인해 Java/Spring 재취업 적합도를 판단하고 파일 DB에 기록하는 스킬`
 - `$guide`: `사용 가능한 전체 스킬과 프롬프트를 한글로 안내하는 스킬`
 - `$ce-compound`: `해결한 문제와 배운 점을 docs/solutions에 기록해 프로젝트 지식으로 축적하는 스킬`
 - `$ce-compound-refresh`: `오래되거나 중복된 docs/solutions 지식을 갱신·통합·정리하는 스킬`
 - `$brainstorming`: `코딩 전에 요구사항, 대안, 설계를 먼저 정리하는 Superpowers 필수 스킬`
 - `$test-driven-development`: `구현 전에 실패 테스트부터 작성하는 Superpowers TDD 스킬`
-- `$tdd-team`: `TDD용 Codex/테스트/보조 shell 3분할 tmux 작업공간을 여는 스킬`
+- `$tdd-team`: `Team Lead/Red/Green/Refactor 4역할 TDD tmux 작업공간을 여는 스킬`
 - `$verification-before-completion`: `완료를 주장하기 전에 실제 검증 결과를 확인하는 Superpowers 스킬`
 
 ## 빠른 예시
@@ -119,8 +126,9 @@ Include only examples backed by installed commands. Prefer:
 - `$catchup 이전 handoff 검증하고 이어갈 준비해줘`
 - `$code-explore src 구조 분석해줘`
 - `$code-quality 이 모듈 품질 점검해줘`
+- `$diagnose 테스트 실패 원인부터 찾아줘`
 - `$spring-boot-init 바탕화면에 웹 JSON API 프로젝트 만들어줘`
-- `$mario 코딩테스트 문제 같이 풀자`
+- `$job-apply-fit 이 채용공고 링크 보고 지원할지 판단하고 기록해줘`
 - `/prompts:ce-compound 이번 버그 해결 과정 정리`
 - `/prompts:ce-compound-refresh auth`
 - `문장을 좀 덜 AI처럼 바꿔줘` → `$humanizer`

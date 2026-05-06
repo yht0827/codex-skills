@@ -59,6 +59,15 @@ Acceptance Criteria:
 ## Design Notes
 UI/UX가 있으면 기본 상태, 빈 상태, 오류 상태를 적는다.
 
+## Module Candidates
+- 만들거나 수정할 주요 module 후보와 책임
+
+## Implementation Decisions
+- 이미 확정된 구현 결정, trade-off, API/schema 영향
+
+## Testing Decisions
+- 어떤 behavior를 어떤 test surface에서 검증할지
+
 ## Technical Notes
 연동 지점, 기존 코드 제약, 테스트/빌드 명령을 적는다.
 
@@ -73,6 +82,7 @@ UI/UX가 있으면 기본 상태, 빈 상태, 오류 상태를 적는다.
 - 모든 story에는 `Typecheck passes`를 넣는다.
 - 테스트 가능한 로직 story에는 `Tests pass`를 넣는다.
 - UI story에는 브라우저 확인 기준을 넣는다.
+- module 후보, 구현 결정, 테스트 결정은 코드 경로보다 책임과 behavior 중심으로 쓴다.
 - PRD는 junior developer나 새 Codex 세션이 바로 읽고 구현 계획을 세울 수 있어야 한다.
 
 ## 저장

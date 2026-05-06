@@ -1,0 +1,56 @@
+{
+  "project": "ExampleProject",
+  "branchName": "ralph/example-feature",
+  "description": "Example Ralph backlog showing AFK/HITL story metadata and dependencies.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Create storage shape",
+      "description": "As a maintainer, I want the feature storage shape defined so that later behavior has a stable base.",
+      "acceptanceCriteria": [
+        "Storage shape is represented in the relevant schema or model",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 1,
+      "type": "AFK",
+      "blockedBy": [],
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Add user-facing behavior",
+      "description": "As a user, I want the new behavior to use the stored data so that I can complete the workflow.",
+      "acceptanceCriteria": [
+        "The behavior is available through the public interface",
+        "The behavior respects the storage shape from US-001",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 2,
+      "type": "AFK",
+      "blockedBy": [
+        "US-001"
+      ],
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Choose launch wording",
+      "description": "As a product owner, I want to choose the final wording so that the feature matches the intended tone.",
+      "acceptanceCriteria": [
+        "Final wording is approved by a human",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "type": "HITL",
+      "blockedBy": [
+        "US-002"
+      ],
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

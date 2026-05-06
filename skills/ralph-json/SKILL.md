@@ -41,6 +41,8 @@ PRD, 요구사항, 기능 설명을 Ralph 실행기가 읽을 수 있는 `prd.js
         "Typecheck passes"
       ],
       "priority": 1,
+      "type": "AFK",
+      "blockedBy": [],
       "passes": false,
       "notes": ""
     }
@@ -54,12 +56,14 @@ PRD, 요구사항, 기능 설명을 Ralph 실행기가 읽을 수 있는 `prd.js
 2. 큰 요구사항을 user story로 쪼갠다.
 3. story 하나는 Ralph iteration 하나에서 끝낼 수 있는 크기로 제한한다.
 4. dependency 순서로 priority를 부여한다.
-5. 모든 story는 `passes:false`, `notes:""`로 시작한다.
-6. ID는 `US-001`, `US-002`처럼 순차 부여한다.
-7. acceptance criteria는 실제로 확인 가능한 문장만 쓴다.
-8. 모든 story에 `Typecheck passes`를 넣는다.
-9. 테스트 가능한 로직 story에는 `Tests pass`를 넣는다.
-10. UI story에는 브라우저 검증 기준을 넣는다.
+5. 자동 실행 가능한 story는 `type:"AFK"`, 사람 판단이 필요한 story는 `type:"HITL"`로 표시한다.
+6. 선행 story가 있으면 `blockedBy:["US-001"]`처럼 ID를 넣고, 없으면 빈 배열로 둔다.
+7. 모든 story는 `passes:false`, `notes:""`로 시작한다.
+8. ID는 `US-001`, `US-002`처럼 순차 부여한다.
+9. acceptance criteria는 실제로 확인 가능한 문장만 쓴다.
+10. 모든 story에 `Typecheck passes`를 넣는다.
+11. 테스트 가능한 로직 story에는 `Tests pass`를 넣는다.
+12. UI story에는 브라우저 검증 기준을 넣는다.
 
 ## Story 크기
 
@@ -92,6 +96,13 @@ story를 2-3문장으로 설명하기 어렵다면 더 쪼갠다.
 6. aggregate view, polish, settings
 
 앞 story가 뒤 story에 의존하면 안 된다.
+
+## AFK/HITL 기준
+
+- `AFK`: 요구사항, 입력, 검증 기준이 충분해서 Codex가 story 하나를 바로 구현해도 되는 단위
+- `HITL`: 디자인 결정, 제품 판단, 외부 권한, 수동 승인, 모호한 도메인 결정이 필요한 단위
+
+`ralph-flow` 실행기는 기본적으로 `AFK`이면서 `blockedBy`가 모두 통과한 story만 선택한다.
 
 ## Acceptance Criteria 기준
 
