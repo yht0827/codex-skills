@@ -36,17 +36,19 @@ Always include these if present on disk:
 - `$catchup`: 이전 handoff를 검증하고 이어갈 상태를 확인할 때
 - `$code-explore`: 새 코드베이스나 큰 모듈 구조를 읽고 보고서로 정리할 때
 - `$code-quality`: 코드 품질과 개선 우선순위를 점검할 때
+- `$diagnose`: 버그 원인을 재현 loop로 좁히고 수정 검증까지 할 때
 - `$spring-boot-init`: Spring Boot 새 프로젝트를 만들 때
+- `$job-apply-fit`: 채용공고 링크를 보고 Java/Spring 재취업 적합도와 지원 기록을 남길 때
 - `$humanizer`: AI 티 나는 글이나 문장을 자연스럽게 다듬을 때
 - `$mario`: 질문형 코칭으로 사고를 정리할 때
 - `$research`: 여러 관점으로 넓게 조사할 때
 - `$playwright`: 실제 브라우저 자동화가 필요할 때
-- `$tdd-team`: TDD용 Codex/테스트/보조 shell 3분할 tmux 작업공간을 열 때
+- `$tdd-team`: Team Lead/Red/Green/Refactor 4역할 TDD tmux 작업공간을 열 때
 - `$gh-fix-ci`: GitHub Actions 실패 원인을 볼 때
 - `/prompts:ce-compound`: 해결한 문제를 프로젝트 지식으로 기록할 때
 - `/prompts:ce-compound-refresh`: 오래된 `docs/solutions/` 지식을 정리할 때
 
-Also include these Superpowers skills if present through `~/.agents/skills/superpowers`:
+Also include these Superpowers skills if present through the installed `superpowers@openai-curated` plugin:
 
 - `brainstorming`: 코딩 전 요구사항과 설계를 정리할 때
 - `systematic-debugging`: 버그 원인을 먼저 좁히고 수정할 때

@@ -35,6 +35,9 @@ Team Lead + Red + Green + Refactor 4개 역할로 TDD를 진행한다.
 ## 핵심 원칙
 
 - Red → Green → Refactor는 순차 진행한다.
+- horizontal Red를 하지 않는다. 한 task 안에서도 `테스트 하나 → 최소 구현 → 다음 테스트` vertical slice로 진행한다.
+- 테스트는 내부 구현 세부가 아니라 public behavior와 observable outcome을 검증한다.
+- Red는 상상한 전체 설계를 테스트로 고정하지 않고, 지금 검증할 동작 하나만 테스트한다.
 - 같은 파일을 동시에 수정하지 않는다.
 - 한 task는 하나의 작은 동작 또는 edge case만 다룬다.
 - Red는 production code를 쓰지 않는다.
