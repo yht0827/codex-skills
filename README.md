@@ -21,7 +21,6 @@ Personal Codex skill toolkit for PRD writing, Ralph-style story tracking, TDD te
 | `$superpowers-flow` | Superpowers 중심 개발 흐름과 Compound 기록 단계 안내 |
 | `$quick-help` | 자주 쓰는 스킬만 짧게 확인 |
 | `$guide` | 설치된 스킬과 프롬프트 전체 목록 안내 |
-| `$mario` | 질문형 코칭으로 코딩테스트/디버깅 사고 정리 |
 
 ## Install
 

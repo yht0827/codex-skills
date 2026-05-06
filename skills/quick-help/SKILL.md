@@ -40,7 +40,6 @@ Always include these if present on disk:
 - `$spring-boot-init`: Spring Boot 새 프로젝트를 만들 때
 - `$job-apply-fit`: 채용공고 링크를 보고 Java/Spring 재취업 적합도와 지원 기록을 남길 때
 - `$humanizer`: AI 티 나는 글이나 문장을 자연스럽게 다듬을 때
-- `$mario`: 질문형 코칭으로 사고를 정리할 때
 - `$research`: 여러 관점으로 넓게 조사할 때
 - `$playwright`: 실제 브라우저 자동화가 필요할 때
 - `$tdd-team`: Team Lead/Red/Green/Refactor 4역할 TDD tmux 작업공간을 열 때

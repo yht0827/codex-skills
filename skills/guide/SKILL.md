@@ -129,7 +129,6 @@ Include only examples backed by installed commands. Prefer:
 - `$diagnose 테스트 실패 원인부터 찾아줘`
 - `$spring-boot-init 바탕화면에 웹 JSON API 프로젝트 만들어줘`
 - `$job-apply-fit 이 채용공고 링크 보고 지원할지 판단하고 기록해줘`
-- `$mario 코딩테스트 문제 같이 풀자`
 - `/prompts:ce-compound 이번 버그 해결 과정 정리`
 - `/prompts:ce-compound-refresh auth`
 - `문장을 좀 덜 AI처럼 바꿔줘` → `$humanizer`
