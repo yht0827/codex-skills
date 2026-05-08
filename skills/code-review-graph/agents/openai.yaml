@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review Graph"
+  short_description: "그래프 기반 코드 리뷰 컨텍스트 도구"
+  default_prompt: "Use $code-review-graph to build a graph and review the current repository changes."

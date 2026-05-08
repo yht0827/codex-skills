@@ -35,6 +35,7 @@ Always include these if present on disk:
 - `$handoff`: 세션을 끝내기 전 다음 세션용 인계 문서를 남길 때
 - `$catchup`: 이전 handoff를 검증하고 이어갈 상태를 확인할 때
 - `$code-explore`: 새 코드베이스나 큰 모듈 구조를 읽고 보고서로 정리할 때
+- `$code-review-graph`: code-review-graph로 변경 영향 범위와 리뷰 컨텍스트를 볼 때
 - `$code-quality`: 코드 품질과 개선 우선순위를 점검할 때
 - `$diagnose`: 버그 원인을 재현 loop로 좁히고 수정 검증까지 할 때
 - `$spring-boot-init`: Spring Boot 새 프로젝트를 만들 때

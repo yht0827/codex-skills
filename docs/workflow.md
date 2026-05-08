@@ -86,6 +86,7 @@ $catchup
 ## Codebase Reading
 
 Use `$code-explore` before modifying unfamiliar code.
+Use `$code-review-graph` when you need graph-based review context, change impact radius, or Codex MCP setup for `code-review-graph`.
 Use `$code-quality` when you need risk-based improvement priorities.
 
 ## Spring Learning Projects

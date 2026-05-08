@@ -103,6 +103,7 @@ Use these fixed Korean lines when the matching command exists:
 - `$handoff`: `다음 Codex 세션이 이어받을 수 있는 인계 문서를 작성하는 스킬`
 - `$catchup`: `handoff를 실제 파일과 git 상태로 검증하고 이어갈 상태를 확인하는 스킬`
 - `$code-explore`: `코드베이스 구조, entrypoint, 의존성, 테스트 흐름을 분석하는 스킬`
+- `$code-review-graph`: `code-review-graph CLI/MCP로 구조 그래프와 변경 영향 범위를 확인하는 스킬`
 - `$code-quality`: `코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험을 평가하는 스킬`
 - `$diagnose`: `버그, 실패 테스트, flaky 현상, 성능 회귀의 원인을 재현 loop로 좁히는 스킬`
 - `$spring-boot-init`: `Spring Initializr로 작은 Spring Boot 프로젝트를 생성하는 스킬`
@@ -125,6 +126,7 @@ Include only examples backed by installed commands. Prefer:
 - `$handoff 세션 끝내기 전에 정리해줘`
 - `$catchup 이전 handoff 검증하고 이어갈 준비해줘`
 - `$code-explore src 구조 분석해줘`
+- `$code-review-graph 현재 변경 영향 범위 분석해줘`
 - `$code-quality 이 모듈 품질 점검해줘`
 - `$diagnose 테스트 실패 원인부터 찾아줘`
 - `$spring-boot-init 바탕화면에 웹 JSON API 프로젝트 만들어줘`

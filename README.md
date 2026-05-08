@@ -6,21 +6,28 @@ Personal Codex skill toolkit for PRD writing, Ralph-style story tracking, TDD te
 
 ## Skills
 
-| Skill | Purpose |
-|---|---|
-| `$prd` | 기능 아이디어와 요구사항을 구현 가능한 PRD로 정리 |
-| `$ralph-json` | PRD나 요구사항을 Ralph 실행용 `prd.json`으로 변환/검증 |
-| `$ralph-flow` | `prd.json` 기반 장기 작업을 story 단위로 반복 실행 |
-| `$tdd-team` | tmux 4분할 Team Lead / Red / Green / Refactor TDD 팀 구성 |
-| `$handoff` | 다음 Codex 세션이 이어받을 인계 문서 작성 |
-| `$catchup` | handoff를 실제 파일과 git 상태로 검증 |
-| `$code-explore` | 새 코드베이스의 구조, entrypoint, 의존성, 테스트 흐름 분석 |
-| `$code-quality` | 코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험 평가 |
-| `$diagnose` | 버그, 실패 테스트, flaky 현상, 성능 회귀의 원인 추적 |
-| `$spring-boot-init` | Spring Initializr 기반 Spring Boot 프로젝트 생성 |
-| `$superpowers-flow` | Superpowers 중심 개발 흐름과 Compound 기록 단계 안내 |
-| `$quick-help` | 자주 쓰는 스킬만 짧게 확인 |
-| `$guide` | 설치된 스킬과 프롬프트 전체 목록 안내 |
+### Planning and Execution
+
+- `$prd`: 기능 아이디어와 요구사항을 구현 가능한 PRD로 정리
+- `$ralph-json`: PRD나 요구사항을 Ralph 실행용 `prd.json`으로 변환/검증
+- `$ralph-flow`: `prd.json` 기반 장기 작업을 story 단위로 반복 실행
+- `$tdd-team`: tmux 4분할 Team Lead / Red / Green / Refactor TDD 팀 구성
+
+### Code Reading and Review
+
+- `$code-explore`: 새 코드베이스의 구조, entrypoint, 의존성, 테스트 흐름 분석
+- `$code-review-graph`: `code-review-graph` CLI/MCP로 그래프 기반 변경 영향 범위 분석
+- `$code-quality`: 코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험 평가
+- `$diagnose`: 버그, 실패 테스트, flaky 현상, 성능 회귀의 원인 추적
+
+### Session and Setup
+
+- `$handoff`: 다음 Codex 세션이 이어받을 인계 문서 작성
+- `$catchup`: handoff를 실제 파일과 git 상태로 검증
+- `$spring-boot-init`: Spring Initializr 기반 Spring Boot 프로젝트 생성
+- `$superpowers-flow`: Superpowers 중심 개발 흐름과 Compound 기록 단계 안내
+- `$quick-help`: 자주 쓰는 스킬만 짧게 확인
+- `$guide`: 설치된 스킬과 프롬프트 전체 목록 안내
 
 ## Install
 
@@ -61,13 +68,14 @@ The validator checks that every skill has `SKILL.md`, valid frontmatter basics, 
 ## Typical Workflow
 
 ```text
-$prd            -> write a clear feature PRD
-$ralph-json     -> convert PRD to prd.json
-$diagnose       -> build a repro loop before fixing unclear bugs
-$tdd-team       -> implement one story through Red / Green / Refactor panes
-$ralph-flow     -> optionally run multiple stories through an automated loop
-$handoff        -> write session handoff before stopping
-$catchup        -> verify handoff in the next session
+$prd                -> write a clear feature PRD
+$ralph-json         -> convert PRD to prd.json
+$diagnose           -> build a repro loop before fixing unclear bugs
+$code-review-graph  -> inspect graph context or change blast radius
+$tdd-team           -> implement one story through Red / Green / Refactor panes
+$ralph-flow         -> optionally run multiple stories through an automated loop
+$handoff            -> write session handoff before stopping
+$catchup            -> verify handoff in the next session
 ```
 
 See [docs/workflow.md](docs/workflow.md) for the longer flow.
