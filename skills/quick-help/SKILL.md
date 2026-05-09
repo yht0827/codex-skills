@@ -38,6 +38,7 @@ Always include these if present on disk:
 - `$code-review-graph`: code-review-graph로 변경 영향 범위와 리뷰 컨텍스트를 볼 때
 - `$code-quality`: 코드 품질과 개선 우선순위를 점검할 때
 - `$diagnose`: 버그 원인을 재현 loop로 좁히고 수정 검증까지 할 때
+- `$open-design`: Open Design으로 디자인 산출물이나 프로토타입을 만들 때
 - `$spring-boot-init`: Spring Boot 새 프로젝트를 만들 때
 - `$job-apply-fit`: 채용공고 링크를 보고 Java/Spring 재취업 적합도와 지원 기록을 남길 때
 - `$humanizer`: AI 티 나는 글이나 문장을 자연스럽게 다듬을 때

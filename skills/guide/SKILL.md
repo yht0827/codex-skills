@@ -106,6 +106,7 @@ Use these fixed Korean lines when the matching command exists:
 - `$code-review-graph`: `code-review-graph CLI/MCP로 구조 그래프와 변경 영향 범위를 확인하는 스킬`
 - `$code-quality`: `코드 품질, 테스트 품질, 보안, 성능, 유지보수 위험을 평가하는 스킬`
 - `$diagnose`: `버그, 실패 테스트, flaky 현상, 성능 회귀의 원인을 재현 loop로 좁히는 스킬`
+- `$open-design`: `Open Design 실행, Codex 연결, 디자인 산출물 생성을 안내하는 스킬`
 - `$spring-boot-init`: `Spring Initializr로 작은 Spring Boot 프로젝트를 생성하는 스킬`
 - `$job-apply-fit`: `채용공고 링크를 확인해 Java/Spring 재취업 적합도를 판단하고 파일 DB에 기록하는 스킬`
 - `$guide`: `사용 가능한 전체 스킬과 프롬프트를 한글로 안내하는 스킬`
@@ -129,6 +130,7 @@ Include only examples backed by installed commands. Prefer:
 - `$code-review-graph 현재 변경 영향 범위 분석해줘`
 - `$code-quality 이 모듈 품질 점검해줘`
 - `$diagnose 테스트 실패 원인부터 찾아줘`
+- `$open-design 대시보드 프로토타입 만들 준비해줘`
 - `$spring-boot-init 바탕화면에 웹 JSON API 프로젝트 만들어줘`
 - `$job-apply-fit 이 채용공고 링크 보고 지원할지 판단하고 기록해줘`
 - `/prompts:ce-compound 이번 버그 해결 과정 정리`

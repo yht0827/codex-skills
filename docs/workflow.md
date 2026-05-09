@@ -89,6 +89,12 @@ Use `$code-explore` before modifying unfamiliar code.
 Use `$code-review-graph` when you need graph-based review context, change impact radius, or Codex MCP setup for `code-review-graph`.
 Use `$code-quality` when you need risk-based improvement priorities.
 
+## Design Prototyping
+
+Use `$open-design` when the desired output is a visual prototype, dashboard mockup, mobile flow, landing page, or deck generated through `nexu-io/open-design`.
+
+Keep it separate from production implementation. Open Design creates reference artifacts; Codex still needs to read the target repo before turning those artifacts into production code.
+
 ## Spring Learning Projects
 
 Use `$spring-boot-init` for small Spring Boot projects, especially web/JSON API and JPA/H2 learning projects.

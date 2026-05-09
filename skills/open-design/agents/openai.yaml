@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Design"
+  short_description: "Open Design 실행과 디자인 산출물 생성 가이드"
+  default_prompt: "Use $open-design to run Open Design and generate a prototype or deck with Codex."
