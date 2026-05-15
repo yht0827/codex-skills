@@ -10,30 +10,30 @@ This repository is a plain file-based skill toolkit. It is not a Claude Code mar
 
 ### Planning And Execution
 
-- `$prd`: turn feature ideas and requirements into implementation-ready PRDs
-- `$ralph-json`: convert PRDs or requirements into Ralph-style `prd.json` backlogs
-- `$ralph-flow`: run long PRD work story by story from `prd.json`
-- `$tdd-team`: open a Team Lead / Red / Green / Refactor TDD workflow
+- [`$prd`](skills/prd/SKILL.md): turn feature ideas and requirements into implementation-ready PRDs
+- [`$ralph-json`](skills/ralph-json/SKILL.md): convert PRDs or requirements into Ralph-style `prd.json` backlogs
+- [`$ralph-flow`](skills/ralph-flow/SKILL.md): run long PRD work story by story from `prd.json`
+- [`$tdd-team`](skills/tdd-team/SKILL.md): open a Team Lead / Red / Green / Refactor TDD workflow
 
 ### Code Reading And Review
 
-- `$code-explore`: map unfamiliar codebases, entrypoints, dependencies, and test flow
-- `$code-review-graph`: inspect graph-based review context and change impact radius
-- `$code-quality`: assess code quality, test quality, security, performance, and maintenance risk
-- `$diagnose`: narrow bugs, failing tests, flaky behavior, and regressions through a repro loop
+- [`$code-explore`](skills/code-explore/SKILL.md): map unfamiliar codebases, entrypoints, dependencies, and test flow
+- [`$code-review-graph`](skills/code-review-graph/SKILL.md): inspect graph-based review context and change impact radius
+- [`$code-quality`](skills/code-quality/SKILL.md): assess code quality, test quality, security, performance, and maintenance risk
+- [`$diagnose`](skills/diagnose/SKILL.md): narrow bugs, failing tests, flaky behavior, and regressions through a repro loop
 
 ### Design And Prototyping
 
-- `$open-design`: guide Open Design setup, Codex connection, and design artifact generation
+- [`$open-design`](skills/open-design/SKILL.md): guide Open Design setup, Codex connection, and design artifact generation
 
 ### Session And Setup
 
-- `$handoff`: write a handoff note for the next Codex session
-- `$catchup`: verify a prior handoff against live files and git state
-- `$spring-boot-init`: create small Spring Boot projects from Spring Initializr
-- `$superpowers-flow`: explain the Superpowers-first workflow and Compound capture step
-- `$quick-help`: show a short everyday command list
-- `$guide`: list installed skills and prompts
+- [`$handoff`](skills/handoff/SKILL.md): write a handoff note for the next Codex session
+- [`$catchup`](skills/catchup/SKILL.md): verify a prior handoff against live files and git state
+- [`$spring-boot-init`](skills/spring-boot-init/SKILL.md): create small Spring Boot projects from Spring Initializr
+- [`$superpowers-flow`](skills/superpowers-flow/SKILL.md): explain the Superpowers-first workflow and Compound capture step
+- [`$quick-help`](skills/quick-help/SKILL.md): show a short everyday command list
+- [`$guide`](skills/guide/SKILL.md): list installed skills and prompts
 
 ## Install
 
@@ -73,17 +73,15 @@ The validator checks that every skill has `SKILL.md`, valid frontmatter basics, 
 
 ## Typical Workflow
 
-```text
-$prd                -> write a clear feature PRD
-$ralph-json         -> convert PRD to prd.json
-$diagnose           -> build a repro loop before fixing unclear bugs
-$code-review-graph  -> inspect graph context or change blast radius
-$open-design        -> create or inspect design artifacts when needed
-$tdd-team           -> implement one story through Red / Green / Refactor panes
-$ralph-flow         -> optionally run multiple stories through an automated loop
-$handoff            -> write session handoff before stopping
-$catchup            -> verify handoff in the next session
-```
+- [`$prd`](skills/prd/SKILL.md) -> write a clear feature PRD
+- [`$ralph-json`](skills/ralph-json/SKILL.md) -> convert PRD to prd.json
+- [`$diagnose`](skills/diagnose/SKILL.md) -> build a repro loop before fixing unclear bugs
+- [`$code-review-graph`](skills/code-review-graph/SKILL.md) -> inspect graph context or change blast radius
+- [`$open-design`](skills/open-design/SKILL.md) -> create or inspect design artifacts when needed
+- [`$tdd-team`](skills/tdd-team/SKILL.md) -> implement one story through Red / Green / Refactor panes
+- [`$ralph-flow`](skills/ralph-flow/SKILL.md) -> optionally run multiple stories through an automated loop
+- [`$handoff`](skills/handoff/SKILL.md) -> write session handoff before stopping
+- [`$catchup`](skills/catchup/SKILL.md) -> verify handoff in the next session
 
 See [docs/workflow.md](docs/workflow.md) for the longer flow.
 
